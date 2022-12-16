@@ -9,9 +9,9 @@ import csv
 import os
 
 # Assign a variable for the file to load and the path.
-file_to_load = os.path.join("/Users/pazzo/Desktop/Analasys Projects Git Hub/Election_Analysis/Election_Analysis/Resources", "election_results.csv")
+file_to_load = os.path.join("Resources", "election_results.csv")
 # Create a filename variable to a direct or indirect path to the file.
-file_to_save = os.path.join("/Users/pazzo/Desktop/Analasys Projects Git Hub/Election_Analysis/Election_Analysis/analysis", "election_analysis.txt")
+file_to_save = os.path.join("analysis", "election_analysis.txt")
 
 # 1. Init total Vote Counter
 total_votes = 0
@@ -81,5 +81,21 @@ winning_candidate_summary = (
 print(winning_candidate_summary)
 #  To do: print out the winning candidate, vote count and percentage to
 #   terminal.
-print(f"{candidate_name}: {vote_percentage:.1f}% ({votes:,})\n")
 
+#print(f"{candidate_name}: {vote_percentage:.1f}% ({votes:,})\n")
+
+# Add a vote to that candidate's count
+candidate_votes[candidate_name] += 1
+
+# Save the results to our text file.
+with open(file_to_save, "w") as txt_file:
+
+    # Print the final vote count to the terminal.
+    election_results = (
+        f"\nElection Results\n"
+        f"-------------------------\n"
+        f"Total Votes: {total_votes:,}\n"
+        f"-------------------------\n")
+    print(election_results, end="")
+    # Save the final vote count to the text file.
+    txt_file.write(election_results)
