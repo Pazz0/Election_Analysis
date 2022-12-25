@@ -47,7 +47,7 @@ with open(file_to_load) as election_data:
         candidate_name = row[2]
 
         # 3: Extract the county name from each row.
-        county = row[1]
+        county_name = row[1]
 
 
         # If the candidate does not match any existing candidate add it to
@@ -65,17 +65,17 @@ with open(file_to_load) as election_data:
 
         # 4a: Write an if statement that checks that the
         # county does not match any existing county in the county list.
-        if county not in county_list:
+        if county_name not in county_list:
 
             # 4b: Add the existing county to the list of counties.
-            county.append(county_list)
+            county_name.append(county_list)
 
             # 4c: Begin tracking the county's vote count.
-            county_votes[county] = 0
+            county_votes[county_name] = 0
 
 
         # 5: Add a vote to that county's vote count.
-        county_votes[county] = 0
+        county_votes[county_name] = 0
 
 
 # Save the results to our text file.
@@ -113,7 +113,7 @@ with open(file_to_save, "w") as txt_file:
 
 
     # Save the final candidate vote count to the text file.
-    for candidate_name in candidate_votes:
+     for candidate_name in candidate_votes:
 
         # Retrieve vote count and percentage
         votes = candidate_votes.get(candidate_name)
