@@ -68,14 +68,14 @@ with open(file_to_load) as election_data:
         if county_name not in county_list:
 
             # 4b: Add the existing county to the list of counties.
-            county_name.append(county_list)
+            county_list.append(county_name)
 
             # 4c: Begin tracking the county's vote count.
             county_votes[county_name] = 0
 
 
         # 5: Add a vote to that county's vote count.
-        county_votes[county_name] = 0
+        county_votes[county_name] += 1
 
 
 # Save the results to our text file.
@@ -108,8 +108,8 @@ with open(file_to_save, "w") as txt_file:
 
 
          # 6f: Write an if statement to determine the winning county and get its vote count.
-        if (county_vote_count > winning_county) and (county_percent > winning_percentage):
-            winning_county = county_vote_count
+        if (county_vote_count > winning_count) and (county_percent > winning_percentage):
+            winning_count = county_vote_count
             winning_candidate = county_name
             winning_percentage = county_percent
 
@@ -117,7 +117,7 @@ with open(file_to_save, "w") as txt_file:
     winning_county_summary = (
         f"\n-------------------------\n"
         f"Largest County Turnout: {winning_candidate}\n"
-        f"Winning County Vote: {winning_county:,}\n"
+        f"Winning County Vote: {winning_count:,}\n"
         f"Winning County Percentage: {winning_percentage:.1f}%\n"
         f"-------------------------\n\n"
         f"Candidate Percentage of Votes:\n"
